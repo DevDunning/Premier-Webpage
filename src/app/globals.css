@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/* =========================
+   DESIGN TOKENS
+========================= */
+:root {
+  --bg: #ffffff;
+  --surface: #f9fafb;
+  --text: #111827;
+  --muted: #6b7280;
+
+  --primary: #e11d48; /* red accent */
+  --border: #e5e7eb;
+}
+
+/* =========================
+   BASE STYLES
+========================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+
+/* consistent section rhythm */
+section {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* =========================
+   TYPOGRAPHY HELPERS
+========================= */
+h1, h2, h3 {
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--muted);
+}
+
+/* =========================
+   LAYOUT HELPERS
+========================= */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================
+   CARD SYSTEM (IMPORTANT)
+========================= */
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  transition: all 200ms ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   MARQUEE ANIMATION
+========================= */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 26s linear infinite;
+}

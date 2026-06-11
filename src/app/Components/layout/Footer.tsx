@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { locations } from "@/lib/locations";
 
 export default function Footer() {
   return (
     <footer className="border-t bg-white">
       <div className="max-w-6xl mx-auto px-6 py-14">
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-4 gap-10">
 
           {/* Brand */}
           <div>
@@ -29,6 +30,7 @@ export default function Footer() {
               <Link href="/" className="hover:text-black">Home</Link>
               <Link href="/#services" className="hover:text-black">Services</Link>
               <Link href="/#why-us" className="hover:text-black">Why Us</Link>
+              <Link href="#store-cta" className="hover:text-black">Showrooms</Link>
             </div>
           </div>
 
@@ -48,6 +50,35 @@ export default function Footer() {
               <Link href="/cookies" className="hover:text-black">
                 Cookies Policy
               </Link>
+            </div>
+          </div>
+
+          {/* Trust / Social */}
+          <div>
+            <h4 className="text-sm font-semibold text-black mb-4">
+              Connect
+            </h4>
+
+            <div className="flex flex-col gap-3 text-sm text-gray-600">
+
+              <a
+                href={locations.social.googleBusiness}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-black"
+              >
+                Google Business
+              </a>
+
+              <a
+                href={locations.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-black"
+              >
+                Facebook
+              </a>
+
             </div>
           </div>
 

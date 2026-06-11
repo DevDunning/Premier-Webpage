@@ -86,7 +86,7 @@ export default function FeaturedShowcase() {
           ))}
         </div>
 
-        {/* CTA BLOCK (SCROLL TARGET) */}
+        {/* CTA BLOCK */}
         <div id="store-cta" className="mt-16 text-center">
 
           <h3 className="text-2xl font-semibold text-gray-900 mb-4">
@@ -98,7 +98,39 @@ export default function FeaturedShowcase() {
             latest inventory, special orders, financing options, and seasonal promotions.
           </p>
 
-          <div className="flex flex-col items-center gap-6">
+          {/* STORE HOURS (DATA-DRIVEN) */}
+          <div className="mt-10 w-full max-w-2xl mx-auto grid md:grid-cols-2 gap-6 text-sm text-gray-700">
+
+            {/* McKenzie Hours */}
+            <div className="border rounded-xl p-5 bg-white/70 backdrop-blur-sm text-left">
+              <h4 className="font-semibold text-gray-900 mb-3">
+                {locations.mckenzie.name} Hours
+              </h4>
+
+              <div className="space-y-1">
+                <p>Mon-Fri: {locations.mckenzie.hours.monFri}</p>
+                <p>Sat: {locations.mckenzie.hours.saturday}</p>
+                <p>Sun: {locations.mckenzie.hours.sunday}</p>
+              </div>
+            </div>
+
+            {/* Union City Hours */}
+            <div className="border rounded-xl p-5 bg-white/70 backdrop-blur-sm text-left">
+              <h4 className="font-semibold text-gray-900 mb-3">
+                {locations.unionCity.name} Hours
+              </h4>
+
+              <div className="space-y-1">
+                <p>Mon-Fri: {locations.unionCity.hours.monFri}</p>
+                <p>Sat: {locations.unionCity.hours.saturday}</p>
+                <p>Sun: {locations.unionCity.hours.sunday}</p>
+              </div>
+            </div>
+
+          </div>
+
+          {/* ACTION BUTTONS */}
+          <div className="flex flex-col items-center gap-6 mt-10">
 
             {/* McKenzie */}
             <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xl">
@@ -143,6 +175,7 @@ export default function FeaturedShowcase() {
             </div>
 
           </div>
+
         </div>
 
       </div>

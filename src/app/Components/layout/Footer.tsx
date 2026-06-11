@@ -1,5 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import { locations } from "@/lib/locations";
+
+const trackEvent = (name: string, params?: any) => {
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", name, params);
+  }
+};
 
 export default function Footer() {
   return (
@@ -53,7 +61,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Trust / Social */}
+          {/* Social / Tracking */}
           <div>
             <h4 className="text-sm font-semibold text-black mb-4">
               Connect
@@ -65,6 +73,9 @@ export default function Footer() {
                 href={locations.social.googleBusiness}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackEvent("google_business_click")
+                }
                 className="hover:text-black"
               >
                 Google Business
@@ -74,6 +85,9 @@ export default function Footer() {
                 href={locations.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackEvent("social_click", { platform: "facebook" })
+                }
                 className="hover:text-black"
               >
                 Facebook

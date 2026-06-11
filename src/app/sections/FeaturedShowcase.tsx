@@ -1,4 +1,12 @@
+"use client";
+
 import { locations } from "@/lib/locations";
+
+const trackEvent = (name: string, params?: any) => {
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", name, params);
+  }
+};
 
 export default function FeaturedShowcase() {
   const items = [
@@ -98,10 +106,9 @@ export default function FeaturedShowcase() {
             latest inventory, special orders, financing options, and seasonal promotions.
           </p>
 
-          {/* STORE HOURS (DATA-DRIVEN) */}
+          {/* STORE HOURS */}
           <div className="mt-10 w-full max-w-2xl mx-auto grid md:grid-cols-2 gap-6 text-sm text-gray-700">
 
-            {/* McKenzie Hours */}
             <div className="border rounded-xl p-5 bg-white/70 backdrop-blur-sm text-left">
               <h4 className="font-semibold text-gray-900 mb-3">
                 {locations.mckenzie.name} Hours
@@ -114,7 +121,6 @@ export default function FeaturedShowcase() {
               </div>
             </div>
 
-            {/* Union City Hours */}
             <div className="border rounded-xl p-5 bg-white/70 backdrop-blur-sm text-left">
               <h4 className="font-semibold text-gray-900 mb-3">
                 {locations.unionCity.name} Hours
@@ -137,6 +143,9 @@ export default function FeaturedShowcase() {
 
               <a
                 href={locations.mckenzie.phone}
+                onClick={() =>
+                  trackEvent("call_click", { location: "mckenzie" })
+                }
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-4 rounded-xl transition text-center"
               >
                 Call McKenzie
@@ -146,6 +155,9 @@ export default function FeaturedShowcase() {
                 href={locations.mckenzie.maps}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackEvent("directions_click", { location: "mckenzie" })
+                }
                 className="flex-1 border border-gray-300 hover:bg-gray-100 text-gray-900 font-semibold px-6 py-4 rounded-xl transition text-center"
               >
                 McKenzie Directions
@@ -158,6 +170,9 @@ export default function FeaturedShowcase() {
 
               <a
                 href={locations.unionCity.phone}
+                onClick={() =>
+                  trackEvent("call_click", { location: "union_city" })
+                }
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-4 rounded-xl transition text-center"
               >
                 Call Union City
@@ -167,6 +182,9 @@ export default function FeaturedShowcase() {
                 href={locations.unionCity.maps}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackEvent("directions_click", { location: "union_city" })
+                }
                 className="flex-1 border border-gray-300 hover:bg-gray-100 text-gray-900 font-semibold px-6 py-4 rounded-xl transition text-center"
               >
                 Union City Directions

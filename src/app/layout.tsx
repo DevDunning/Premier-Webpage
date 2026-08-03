@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/app/Components/layout/Navbar";
 import Footer from "@/app/Components/layout/Footer";
-import Script from "next/script";
+import AnalyticsConsent from "@/app/Components/AnalyticsConsent";
 
 export const metadata: Metadata = {
   title: "Premier Furniture | McKenzie & Union City TN",
@@ -31,26 +31,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-white text-[#111827] antialiased">
-
-        {/* GA4 */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-9RWME1XVX6"
-          strategy="afterInteractive"
-        />
-
-        <Script id="ga4" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-9RWME1XVX6');
-          `}
-        </Script>
+        <a
+          href="#main-content"
+          className="fixed left-4 top-4 z-[110] -translate-y-24 rounded-xl bg-gray-950 px-4 py-3 text-sm font-semibold text-white shadow-lg transition focus:translate-y-0"
+        >
+          Skip to main content
+        </a>
 
         <Navbar />
         {children}
         <Footer />
-
+        <AnalyticsConsent />
       </body>
     </html>
   );

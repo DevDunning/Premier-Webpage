@@ -10,7 +10,7 @@ import Contact from "@/app/sections/Contact";
 
 export default function Home() {
   return (
-    <>
+    <main id="main-content">
       <Hero />
       <TrustBar />
       <FeaturedShowcase />
@@ -20,6 +20,6 @@ export default function Home() {
       <Services />
       <Categories />
       <Contact />
-    </>
+    </main>
   );
 }

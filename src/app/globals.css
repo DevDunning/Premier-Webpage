@@ -9,7 +9,7 @@
   --text: #111827;
   --muted: #6b7280;
 
-  --primary: #e11d48; /* red accent */
+  --primary: #e11d48;
   --border: #e5e7eb;
 }
 
@@ -26,16 +26,22 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
 }
 
-/* consistent section rhythm */
-section {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+::selection {
+  background: #fecdd3;
+  color: #881337;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(225, 29, 72, 0.45);
+  outline-offset: 3px;
 }
 
 /* =========================
    TYPOGRAPHY HELPERS
 ========================= */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   letter-spacing: -0.02em;
 }
 
@@ -44,42 +50,34 @@ p {
 }
 
 /* =========================
-   LAYOUT HELPERS
-========================= */
-.container {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* =========================
-   CARD SYSTEM (IMPORTANT)
-========================= */
-.card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-  transition: all 200ms ease;
-}
-
-.card:hover {
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
-}
-
-/* =========================
-   MARQUEE ANIMATION
+   BRAND CAROUSEL
 ========================= */
 @keyframes marquee {
-  0% {
-    transform: translateX(0%);
+  from {
+    transform: translateX(0);
   }
-  100% {
+
+  to {
     transform: translateX(-50%);
   }
 }
 
 .animate-marquee {
   animation: marquee 26s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

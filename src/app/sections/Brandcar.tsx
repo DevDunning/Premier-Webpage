@@ -1,5 +1,4 @@
-"use client";
-
+import Image from "next/image";
 import { brands } from "@/data/brands";
 
 const weightMap: Record<string, string> = {
@@ -15,68 +14,60 @@ const weightMap: Record<string, string> = {
   "Capital Bedding": "h-10",
 };
 
+function BrandList({ duplicate = false }: { duplicate?: boolean }) {
+  return (
+    <ul
+      aria-hidden={duplicate ? "true" : undefined}
+      className="flex shrink-0 items-center gap-4 pr-4"
+    >
+      {brands.map((brand) => (
+        <li
+          key={brand.name}
+          className="flex min-h-28 w-44 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:w-48 lg:w-52"
+        >
+          <Image
+            src={brand.logo}
+            alt={duplicate ? "" : brand.name}
+            width={176}
+            height={80}
+            sizes="208px"
+            className={`${
+              weightMap[brand.name] || "h-10"
+            } w-auto max-w-full object-contain`}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function BrandCarousel() {
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50 border-y overflow-hidden">
+    <section
+      id="brands"
+      aria-labelledby="brands-heading"
+      className="scroll-mt-24 overflow-hidden border-y bg-gradient-to-b from-white to-gray-50 py-20"
+    >
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="text-center">
+          <h2
+            id="brands-heading"
+            className="text-2xl font-semibold tracking-tight text-gray-950"
+          >
+            Trusted National Brands
+          </h2>
 
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h2 className="text-2xl font-semibold tracking-tight text-[#111827]">
-          Trusted National Brands
-        </h2>
-
-        <p className="text-sm text-gray-500 mt-2">
-          Premium furniture and mattress partners available in-store and special order
-        </p>
+          <p className="mt-2 text-sm text-gray-500">
+            Furniture and mattress partners available in-store and by special
+            order
+          </p>
+        </div>
       </div>
 
-      {/* Carousel wrapper */}
-      <div className="relative">
-
-        {/* softer edge fade (premium look) */}
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-gray-50 to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-gray-50 to-transparent z-10" />
-
-        {/* track */}
-        <div className="flex w-max animate-marquee gap-20 items-center hover:[animation-play-state:paused]">
-
-          {[...brands, ...brands].map((b, i) => (
-            <div
-              key={`${b.name}-${i}`}
-              className="flex items-center justify-center w-48 h-28"
-            >
-
-              {/* premium card */}
-              <div className="
-                flex items-center justify-center
-                w-44 h-20
-                bg-white/80
-                backdrop-blur
-                border border-gray-200
-                rounded-xl
-                shadow-sm
-                hover:shadow-md
-                transition-all duration-300
-              ">
-
-                <img
-                  src={b.logo}
-                  alt={b.name}
-                  className={`
-                    ${weightMap[b.name] || "h-10"}
-                    w-auto
-                    object-contain
-                    opacity-80
-                    hover:opacity-100
-                    hover:scale-110
-                    transition-all duration-300
-                  `}
-                />
-
-              </div>
-            </div>
-          ))}
-
+      <div className="mt-12 overflow-hidden">
+        <div className="animate-marquee flex w-max hover:[animation-play-state:paused]">
+          <BrandList />
+          <BrandList duplicate />
         </div>
       </div>
     </section>

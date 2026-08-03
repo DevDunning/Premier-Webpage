@@ -1,79 +1,60 @@
 import Image from "next/image";
-
-const categories = [
-  {
-    title: "Living Room Sets",
-    image: "/images/Marley.jpg",
-  },
-  {
-    title: "Bedroom Furniture",
-    image: "/images/bedset.png",
-  },
-  {
-    title: "Mattresses",
-    image: "/images/beautyrestbase.png",
-  },
-  {
-    title: "Recliners",
-    image: "/images/bestrecliner.jpg",
-  },
-  {
-    title: "Dining Sets",
-    image: "/images/dining.jpg",
-  },
-  {
-    title: "Coffee & End Tables",
-    image: "/images/coffee.png",
-  },
-];
+import Link from "next/link";
+import { categories } from "@/data/categories";
 
 export default function Categories() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="categories" className="scroll-mt-24 bg-white py-24">
+      <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
-          <span className="text-red-600 font-semibold uppercase tracking-widest text-sm">
+          <span className="text-sm font-semibold uppercase tracking-widest text-red-600">
             Shop By Room
           </span>
 
-          <h2 className="text-4xl font-extrabold mt-3">
+          <h2 className="mt-3 text-4xl font-extrabold">
             Furniture Categories
           </h2>
 
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+          <p className="mx-auto mt-4 max-w-2xl text-gray-600">
             Discover quality furniture and mattresses for every room in your
             home.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
+        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
-            <div
-              key={category.title}
-              className="group relative h-80 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+            <Link
+              key={category.slug}
+              href={`/categories/${category.slug}`}
+              className="group relative h-80 cursor-pointer overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:shadow-2xl"
             >
               <Image
                 src={category.image}
                 alt={category.title}
                 fill
-                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
+              <div className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/55 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-sm">
+                Gallery Coming Soon
+              </div>
+
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 className="text-2xl font-bold mb-2">
+                <h3 className="mb-2 text-2xl font-bold">
                   {category.title}
                 </h3>
 
-                <div className="flex items-center text-red-400 font-medium">
-                  Explore Collection
-                  <span className="ml-2 group-hover:translate-x-2 transition-transform">
+                <div className="flex items-center font-medium text-red-400">
+                  View Category
+                  <span className="ml-2 transition-transform group-hover:translate-x-2">
                     →
                   </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

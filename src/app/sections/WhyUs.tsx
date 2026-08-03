@@ -22,67 +22,63 @@ export default function WhyUs() {
     },
   ];
 
-  const stats = [
-    { value: "5K+", label: "Customers Served" },
-    { value: "20+", label: "Years Experience" },
-    { value: "10+", label: "Brand Partners" },
-    { value: "100%", label: "Service Focused" },
+  const highlights = [
+    { value: "2", label: "West Tennessee Showrooms" },
+    { value: "10+", label: "Trusted Brand Partners" },
+    { value: "Local", label: "Sales & Delivery Team" },
+    { value: "Flexible", label: "In-Store & Special Order" },
   ];
 
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
-
-        {/* Header */}
+    <section id="why-us" className="scroll-mt-24 bg-white py-24">
+      <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
-          <span className="text-gray-500 uppercase tracking-[0.2em] text-xs">
+          <span className="text-xs uppercase tracking-[0.2em] text-gray-500">
             Why Choose Premier
           </span>
 
-          <h2 className="text-4xl font-semibold mt-4 text-black">
-            Built Around Service & Trust
+          <h2 className="mt-4 text-4xl font-semibold text-black">
+            Built Around Service &amp; Trust
           </h2>
 
-          <p className="text-gray-600 mt-5 max-w-2xl mx-auto leading-relaxed">
+          <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-gray-600">
             A straightforward furniture experience focused on quality brands,
             dependable service, and long-term value.
           </p>
         </div>
 
-        {/* Benefits */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-14">
-          {benefits.map((b) => (
-            <div
-              key={b.title}
-              className="border border-gray-100 rounded-xl p-6 bg-gray-50/40"
+        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {benefits.map((benefit) => (
+            <article
+              key={benefit.title}
+              className="rounded-xl border border-gray-100 bg-gray-50/40 p-6"
             >
-              <div className="w-10 h-[2px] bg-gray-900 mb-5" />
+              <div className="mb-5 h-[2px] w-10 bg-gray-900" />
 
               <h3 className="text-lg font-medium text-black">
-                {b.title}
+                {benefit.title}
               </h3>
 
-              <p className="text-sm text-gray-600 mt-3 leading-relaxed">
-                {b.description}
+              <p className="mt-3 text-sm leading-relaxed text-gray-600">
+                {benefit.description}
               </p>
-            </div>
+            </article>
           ))}
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mt-20 pt-10 border-t border-gray-200">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center">
+        <div className="mt-20 grid grid-cols-2 gap-10 border-t border-gray-200 pt-10 md:grid-cols-4">
+          {highlights.map((highlight) => (
+            <div key={highlight.label} className="text-center">
               <div className="text-3xl font-semibold text-black">
-                {s.value}
+                {highlight.value}
               </div>
-              <p className="text-sm text-gray-500 mt-2">
-                {s.label}
+
+              <p className="mt-2 text-sm text-gray-500">
+                {highlight.label}
               </p>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

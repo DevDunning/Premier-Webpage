@@ -1,81 +1,100 @@
 "use client";
 
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 import { locations } from "@/lib/locations";
-
-const trackEvent = (name: string, params?: any) => {
-  if (typeof window !== "undefined" && (window as any).gtag) {
-    (window as any).gtag("event", name, params);
-  }
-};
 
 export default function Footer() {
   return (
     <footer className="border-t bg-white">
-      <div className="max-w-6xl mx-auto px-6 py-14">
-
-        <div className="grid md:grid-cols-4 gap-10">
-
-          {/* Brand */}
+      <div className="mx-auto max-w-6xl px-6 py-14">
+        <div className="grid gap-10 md:grid-cols-4">
           <div>
             <h3 className="text-lg font-semibold text-black">
               Premier Furniture
             </h3>
 
-            <p className="text-sm text-gray-600 mt-3 leading-relaxed">
+            <p className="mt-3 text-sm leading-relaxed text-gray-600">
               Quality home furnishings with trusted brands, local service,
               and a straightforward showroom experience.
             </p>
           </div>
 
-          {/* Navigation */}
           <div>
-            <h4 className="text-sm font-semibold text-black mb-4">
+            <h4 className="mb-4 text-sm font-semibold text-black">
               Navigation
             </h4>
 
             <div className="flex flex-col gap-2 text-sm text-gray-600">
-              <Link href="/" className="hover:text-black">Home</Link>
-              <Link href="/#services" className="hover:text-black">Services</Link>
-              <Link href="/#why-us" className="hover:text-black">Why Us</Link>
-              <Link href="#store-cta" className="hover:text-black">Showrooms</Link>
+              <Link href="/" className="hover:text-black">
+                Home
+              </Link>
+
+              <Link href="/#categories" className="hover:text-black">
+                Categories
+              </Link>
+
+              <Link href="/#services" className="hover:text-black">
+                Services
+              </Link>
+
+              <Link href="/#why-us" className="hover:text-black">
+                Why Us
+              </Link>
+
+              <Link href="/#store-cta" className="hover:text-black">
+                Showrooms
+              </Link>
             </div>
           </div>
 
-          {/* Legal */}
           <div>
-            <h4 className="text-sm font-semibold text-black mb-4">
+            <h4 className="mb-4 text-sm font-semibold text-black">
               Legal
             </h4>
 
             <div className="flex flex-col gap-2 text-sm text-gray-600">
               <Link href="/terms" className="hover:text-black">
-                Terms & Conditions
+                Terms &amp; Conditions
               </Link>
+
               <Link href="/privacy" className="hover:text-black">
                 Privacy Policy
               </Link>
+
               <Link href="/cookies" className="hover:text-black">
                 Cookies Policy
               </Link>
+
+              <Link href="/accessibility" className="hover:text-black">
+                Accessibility
+              </Link>
+
+              <button
+                type="button"
+                onClick={() =>
+                  window.dispatchEvent(
+                    new Event("premier:open-cookie-settings"),
+                  )
+                }
+                className="text-left hover:text-black"
+              >
+                Cookie Settings
+              </button>
             </div>
           </div>
 
-          {/* Social / Tracking */}
           <div>
-            <h4 className="text-sm font-semibold text-black mb-4">
+            <h4 className="mb-4 text-sm font-semibold text-black">
               Connect
             </h4>
 
             <div className="flex flex-col gap-3 text-sm text-gray-600">
-
               <a
                 href={locations.social.googleBusiness}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() =>
-                  trackEvent("google_business_click")
-                }
+                onClick={() => trackEvent("google_business_click")}
                 className="hover:text-black"
               >
                 Google Business
@@ -92,25 +111,17 @@ export default function Footer() {
               >
                 Facebook
               </a>
-
             </div>
           </div>
-
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t flex flex-col md:flex-row justify-between gap-4 text-sm text-gray-500">
-
+        <div className="mt-12 flex flex-col justify-between gap-4 border-t pt-6 text-sm text-gray-500 md:flex-row">
           <p>
             © {new Date().getFullYear()} Premier Furniture. All rights reserved.
           </p>
 
-          <p>
-            Serving West Tennessee and surrounding areas.
-          </p>
-
+          <p>Serving West Tennessee and surrounding areas.</p>
         </div>
-
       </div>
     </footer>
   );

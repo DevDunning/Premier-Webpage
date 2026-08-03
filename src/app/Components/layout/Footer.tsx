@@ -120,7 +120,17 @@ export default function Footer() {
             © {new Date().getFullYear()} Premier Furniture. All rights reserved.
           </p>
 
-          <p>Serving West Tennessee and surrounding areas.</p>
+          <p>
+            Website designed &amp; developed by{" "}
+            <a
+              href="https://www.dunningsdevelopments.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-gray-700 transition-colors hover:text-black"
+            >
+              Dunning&apos;s Developments
+            </a>
+          </p>
         </div>
       </div>
     </footer>

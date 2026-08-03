@@ -1,168 +1,82 @@
-"use client";
-
-import Image from "next/image";
-import { trackEvent } from "@/lib/analytics";
-import { locations } from "@/lib/locations";
-
-const items = [
+const promotions = [
   {
-    title: "Luxury Recliners",
-    description:
-      "Comfort-first seating from trusted brands built for everyday relaxation.",
-    image: "/images/bestrecliner.jpg",
-    badge: "Customer Favorite",
+    label: "Limited-Time Event",
+    title: "Labor Day Mattress Sale",
+    description: "Save on select mattresses during our Labor Day Sale.",
+    details: "August 11–September 15",
   },
   {
-    title: "Living Room Sets",
+    label: "In-Stock Clearance",
+    title: "Save 40%, 50%, Even 60% Off",
     description:
-      "Sofas, loveseats, sectionals, and complete living room collections.",
-    image: "/images/ada.jpg",
-    badge: "Best Seller",
+      "Clearance savings on select in-stock furniture and mattresses.",
+    details: "While supplies last",
   },
   {
-    title: "Premium Mattresses",
+    label: "Flexible Financing",
+    title: "12 Months Same as Cash",
     description:
-      "Shop Serta, Beautyrest, Tempur-Pedic, Helix, and more.",
-    image: "/images/beautyrestbase.png",
-    badge: "Financing Available",
-  },
-  {
-    title: "Bedroom Sets",
-    description:
-      "Beautiful bedroom packages with beds, dressers, and nightstands.",
-    image: "/images/bedset.png",
-    badge: "In Stock & Orderable",
+      "Flexible financing options can help make your purchase more manageable.",
+    details: "Available upon qualification",
   },
 ];
 
-const showrooms = [locations.mckenzie, locations.unionCity];
-
-export default function FeaturedShowcase() {
+export default function Promotions() {
   return (
-    <section className="bg-gradient-to-b from-white to-gray-50 py-24">
+    <section
+      id="promotions"
+      aria-labelledby="promotions-heading"
+      className="bg-white py-20"
+    >
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-14 text-center">
-          <span className="mb-4 inline-block rounded-full bg-red-100 px-4 py-1 text-sm font-medium text-red-700">
-            Showroom Favorites
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-semibold uppercase tracking-widest text-red-600">
+            Current Promotions
           </span>
 
-          <h2 className="text-4xl font-bold text-gray-900 md:text-5xl">
-            Featured Furniture &amp; Mattresses
+          <h2
+            id="promotions-heading"
+            className="mt-3 text-3xl font-bold text-gray-950 md:text-4xl"
+          >
+            More Ways to Save
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-            Explore popular furniture and mattress collections available in our
-            showrooms and through special order.
+          <p className="mt-3 text-base text-gray-600">
+            Visit either Premier Furniture showroom for availability and
+            complete promotional details.
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {items.map((item) => (
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {promotions.map((promotion) => (
             <article
-              key={item.title}
-              className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              key={promotion.title}
+              className="rounded-2xl border border-gray-200 border-t-4 border-t-red-600 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+              <span className="text-xs font-semibold uppercase tracking-widest text-red-600">
+                {promotion.label}
+              </span>
 
-                <div className="absolute left-3 top-3">
-                  <span className="rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white">
-                    {item.badge}
-                  </span>
-                </div>
-              </div>
+              <h3 className="mt-3 text-xl font-bold text-gray-950">
+                {promotion.title}
+              </h3>
 
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {item.title}
-                </h3>
+              <p className="mt-3 text-sm leading-relaxed text-gray-600">
+                {promotion.description}
+              </p>
 
-                <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                  {item.description}
-                </p>
+              <div className="mt-5 border-t border-gray-100 pt-4 text-sm font-semibold text-gray-800">
+                {promotion.details}
               </div>
             </article>
           ))}
         </div>
 
-        <div id="store-cta" className="mt-16 scroll-mt-28 text-center">
-          <h3 className="text-2xl font-semibold text-gray-900">
-            Visit a Premier Furniture Showroom
-          </h3>
-
-          <p className="mx-auto mt-4 max-w-2xl text-gray-600">
-            Browse current inventory, ask about special orders, and get help
-            choosing furniture or mattresses for your home.
-          </p>
-
-          <div className="mx-auto mt-10 grid w-full max-w-4xl gap-6 text-left md:grid-cols-2">
-            {showrooms.map((showroom) => (
-              <article
-                key={showroom.shortName}
-                className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
-              >
-                <h4 className="text-lg font-bold text-gray-950">
-                  {showroom.name}
-                </h4>
-
-                <p className="mt-2 text-sm text-gray-600">
-                  {showroom.address}
-                </p>
-
-                <dl className="mt-5 space-y-2 border-t border-gray-100 pt-5 text-sm">
-                  {showroom.hours.map((entry) => (
-                    <div
-                      key={entry.days}
-                      className="flex items-start justify-between gap-6"
-                    >
-                      <dt className="font-medium text-gray-700">
-                        {entry.days}
-                      </dt>
-
-                      <dd className="text-right text-gray-600">
-                        {entry.hours}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <a
-                    href={showroom.phone}
-                    onClick={() =>
-                      trackEvent("call_click", {
-                        location: showroom.shortName.toLowerCase(),
-                      })
-                    }
-                    className="rounded-xl bg-red-600 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-red-700"
-                  >
-                    Call {showroom.shortName}
-                  </a>
-
-                  <a
-                    href={showroom.maps}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() =>
-                      trackEvent("directions_click", {
-                        location: showroom.shortName.toLowerCase(),
-                      })
-                    }
-                    className="rounded-xl border border-gray-300 px-4 py-3 text-center text-sm font-semibold text-gray-900 transition hover:bg-gray-100"
-                  >
-                    Get Directions
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
+        <p className="mx-auto mt-7 max-w-4xl text-center text-xs leading-relaxed text-gray-500">
+          Offers apply to qualifying merchandise while supplies last.
+          Financing is subject to approval and applicable terms. See store for
+          complete details.
+        </p>
       </div>
     </section>
   );

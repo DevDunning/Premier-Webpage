@@ -1,10 +1,5 @@
 const promotions = [
-  {
-    label: "Limited-Time Event",
-    title: "Labor Day Mattress Sale",
-    description: "Save on select mattresses during our Labor Day Sale.",
-    details: "August 11–September 15",
-  },
+
   {
     label: "In-Stock Clearance",
     title: "Save 40%, 50%, Even 60% Off",
@@ -47,7 +42,7 @@ export default function Promotions() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
           {promotions.map((promotion) => (
             <article
               key={promotion.title}

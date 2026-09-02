@@ -1,25 +1,18 @@
-import Hero from "@/app/sections/Hero";
-import TrustBar from "@/app/sections/TrustBar";
-import FeaturedShowcase from "@/app/sections/FeaturedShowcase";
-import Promotions from "@/app/sections/Promotions";
-import BrandCarousel from "@/app/sections/Brandcar";
-import WhyUs from "@/app/sections/WhyUs";
-import Services from "@/app/sections/Services";
-import Categories from "@/app/sections/Categories";
-import Contact from "@/app/sections/Contact";
-
 export default function Home() {
   return (
-    <main id="main-content">
-      <Hero />
-      <TrustBar />
-      <FeaturedShowcase />
-      <Promotions />
-      <BrandCarousel />
-      <WhyUs />
-      <Services />
-      <Categories />
-      <Contact />
+    <main className="min-h-screen bg-white flex items-center justify-center px-6">
+      <div className="max-w-2xl text-center">
+        <div className="mx-auto mb-8 h-1 w-24 rounded-full bg-red-600" />
+
+        <h1 className="text-4xl font-bold tracking-tight text-black md:text-6xl">
+          Website Temporarily Unavailable
+        </h1>
+
+        <p className="mt-6 text-lg leading-relaxed text-gray-600">
+          The Premier Furniture website is temporarily unavailable.
+          Please check back soon.
+        </p>
+      </div>
     </main>
   );
 }
